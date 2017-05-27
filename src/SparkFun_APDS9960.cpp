@@ -381,8 +381,8 @@ bool SparkFun_APDS9960::enableGestureSensor(bool interrupts)
     if( !wireWriteDataByte(APDS9960_PPULSE, DEFAULT_GESTURE_PPULSE) ) {
         return false;
     }
-    //Jon if( !setLEDBoost(LED_BOOST_300) ) {
-    if( !setLEDBoost(LED_BOOST_100) ) {
+    if( !setLEDBoost(LED_BOOST_300) ) {
+    //if( !setLEDBoost(LED_BOOST_100) ) {
         return false;
     }
     if( interrupts ) {
@@ -2200,7 +2200,7 @@ bool SparkFun_APDS9960::wireReadDataByte(uint8_t reg, uint8_t &val)
 
     // Jon SH: Short delay to improve stability of read from the APDS9960
     // without this Wire.requestFrom appears to not return.
-    delayMicroseconds(100);
+//TK    delayMicroseconds(100);
 
     /* Read from register */
     Wire.requestFrom(APDS9960_I2C_ADDR, 1);
