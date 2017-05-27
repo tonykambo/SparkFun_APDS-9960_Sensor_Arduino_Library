@@ -997,41 +997,45 @@ bool SparkFun_APDS9960::decodeGesture()
     }
 
     /* Determine swipe direction */
+    // SparkFun directions modified to match DFRobot orientation
+    
     if( (gesture_ud_count_ == -1) && (gesture_lr_count_ == 0) ) {
-        gesture_motion_ = DIR_UP;
+        gesture_motion_ = DIR_RIGHT;//DIR_UP;
     } else if( (gesture_ud_count_ == 1) && (gesture_lr_count_ == 0) ) {
-        gesture_motion_ = DIR_DOWN;
+        gesture_motion_ =DIR_LEFT; //DIR_DOWN;
     } else if( (gesture_ud_count_ == 0) && (gesture_lr_count_ == 1) ) {
-        gesture_motion_ = DIR_RIGHT;
+        gesture_motion_ = DIR_DOWN;//DIR_RIGHT;
     } else if( (gesture_ud_count_ == 0) && (gesture_lr_count_ == -1) ) {
-        gesture_motion_ = DIR_LEFT;
+        gesture_motion_ = DIR_UP;//DIR_LEFT;
     } else if( (gesture_ud_count_ == -1) && (gesture_lr_count_ == 1) ) {
         if( abs(gesture_ud_delta_) > abs(gesture_lr_delta_) ) {
-            gesture_motion_ = DIR_UP;
+            gesture_motion_ =DIR_RIGHT; //DIR_UP;
         } else {
-            gesture_motion_ = DIR_RIGHT;
+            gesture_motion_ = DIR_DOWN;//DIR_RIGHT;
         }
     } else if( (gesture_ud_count_ == 1) && (gesture_lr_count_ == -1) ) {
         if( abs(gesture_ud_delta_) > abs(gesture_lr_delta_) ) {
-            gesture_motion_ = DIR_DOWN;
+            gesture_motion_ = DIR_LEFT;//DIR_DOWN;
         } else {
-            gesture_motion_ = DIR_LEFT;
+            gesture_motion_ = DIR_UP;//DIR_LEFT;
         }
     } else if( (gesture_ud_count_ == -1) && (gesture_lr_count_ == -1) ) {
         if( abs(gesture_ud_delta_) > abs(gesture_lr_delta_) ) {
-            gesture_motion_ = DIR_UP;
+            gesture_motion_ =DIR_RIGHT; //DIR_UP;
         } else {
-            gesture_motion_ = DIR_LEFT;
+            gesture_motion_ =DIR_UP;// DIR_LEFT;
         }
     } else if( (gesture_ud_count_ == 1) && (gesture_lr_count_ == 1) ) {
         if( abs(gesture_ud_delta_) > abs(gesture_lr_delta_) ) {
-            gesture_motion_ = DIR_DOWN;
+            gesture_motion_ = DIR_LEFT;//DIR_DOWN;
         } else {
-            gesture_motion_ = DIR_RIGHT;
+            gesture_motion_ = DIR_DOWN;//DIR_RIGHT;
         }
     } else {
         return false;
     }
+
+    return true;
 
     return true;
 }
